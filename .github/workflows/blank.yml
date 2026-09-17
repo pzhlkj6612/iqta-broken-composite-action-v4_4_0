@@ -20,11 +20,17 @@ jobs:
             if [[ ! -d /home/runner/work/_actions/jurplel/install-qt-action/$sha ]]; then
               continue
             fi
+
             echo '---'
+
             pushd /home/runner/work/_actions/jurplel/install-qt-action/$sha
-            # find .
+
+            md5sum ./action.yml
+            grep -rnw -A 5 '    uses:' ./action.yml
+
             md5sum ./action/action.yml
             grep -rnw -A 5 'py7zrversion:' ./action/action.yml
+
             echo '==='
           done
           popd
